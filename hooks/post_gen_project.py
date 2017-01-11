@@ -13,6 +13,7 @@ def usage():
     print("    python setup.py develop\n")
     print("  Add your service logic to " +
           "uservice_{{cookiecutter.svc_name}}/server.py.")
+    print("  Edit README.md to document your service.")
     print("  Get it working and tested.")
     print("  Tell SQuaRE it's ready for incorporation into api.lsst.codes.")
 

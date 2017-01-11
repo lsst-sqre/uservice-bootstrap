@@ -14,8 +14,8 @@ from flask import jsonify
 def server(run_standalone=False):
     """Create the app and then run it."""
     # Add "{{ cookiecutter.route }}" for mapping behind api.lsst.codes
-    app = APIFlask(name="uservice-{{ cookiecutter.svc_name}}",
-                   version="0.0.1",
+    app = APIFlask(name="uservice-{{ cookiecutter.svc_name }}",
+                   version="{{ cookiecutter.version }}",
                    repository="{{ cookiecutter.repository }}",
                    description="{{ cookiecutter.description }}",
                    route=["/", "{{ cookiecutter.route }}"],

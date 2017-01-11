@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
 
-        - name: u-metricdev
+        - name: u-{{ cookiecutter.svc_name }}
           imagePullPolicy: "Always"
           image: "lsstsqre/uservice-{{ cookiecutter.svc_name }}"
           ports:
