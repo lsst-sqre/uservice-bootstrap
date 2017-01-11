@@ -1,0 +1,11 @@
+{
+    "author_name": "First Last",
+    "email": "me@lsst.org",
+    "year": "2017",
+    "svc_name": "mymicroservice",
+    "version": "0.0.1",
+    "repository": "https://github.com/sqre-lsst/uservice-{{ cookiecutter.svc_name }}",
+    "description": "My api.lsst.codes microservice",
+    "route": "/{{ cookiecutter.svc_name }}",
+    "auth_type": "none"
+}

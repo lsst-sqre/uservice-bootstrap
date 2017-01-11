@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: u-{{ cookiecutter.svc_name }}
+  labels:
+    name: u-{{ cookiecutter.svc_name }}
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 5000 # FIXME: must not conflict with any other services
+    targetPort: 5000
+    protocol: TCP
+  selector:
+    name: u-{{ cookiecutter.svc_name }}
