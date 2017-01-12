@@ -7,5 +7,5 @@
     "repository": "https://github.com/sqre-lsst/uservice-{{ cookiecutter.svc_name }}",
     "description": "My api.lsst.codes microservice",
     "route": "/{{ cookiecutter.svc_name }}",
-    "auth_type": "none"
+    "auth_type": [ "none", "basic", "bitly-proxy" ]
 }

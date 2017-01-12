@@ -5,7 +5,6 @@ try:
     from json.decoder import JSONDecodeError
 except ImportError:
     JSONDecodeError = ValueError
-from threading import Thread, Lock
 from apikit import APIFlask
 from apikit import BackendError
 from flask import jsonify
@@ -26,7 +25,7 @@ def server(run_standalone=False):
     app.config["SESSION"] = None{% endif %}
 
     @app.errorhandler(BackendError)
-    # Linter can't understand decorators.
+    # pylint can't understand decorators.
     # pylint: disable=unused-variable
     def handle_invalid_usage(error):
         """Custom error handler."""
@@ -41,13 +40,14 @@ def server(run_standalone=False):
 
     @app.route("{{ cookiecutter.route }}")
     @app.route("{{ cookiecutter.route }}/")
-    #@app.route("{{ cookiecutter.route }}/<parameter>")
+    # @app.route("{{ cookiecutter.route }}/<parameter>")
     # or, if you have a parameter, def route_function(parameter=None):
     def route_function():
         """
-        #{{ cookiecutter.description }}
+        {{ cookiecutter.description }}
         """
         # FIXME: service logic goes here{% if cookiecutter.auth_type == "bitly-proxy" %}
+        # See https://sqr-015.lsst.io for details.
         # - store HTTP session in app.config["SESSION"]{% endif %}
         # - raise errors as BackendError
         # - return your results with jsonify

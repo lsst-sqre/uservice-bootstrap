@@ -2,7 +2,7 @@
 
 # sqre-uservice-{{ cookiecutter.svc_name }}
 
-LSST DM SQuaRE microservice wrapper.  TODO
+LSST DM SQuaRE api.lsst.codes-compliant microservice wrapper.  TODO
 
 ## Usage
 
@@ -11,7 +11,7 @@ LSST DM SQuaRE microservice wrapper.  TODO
 
 ### Routes
 
-* `/`: returns `OK` (used by GCE Ingress healthcheck)
+* `/`: returns `OK` (used by Google Container Engine Ingress healthcheck)
 
 * `/{{ cookiecutter.svc_name}}`: TODO
 

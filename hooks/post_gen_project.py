@@ -17,5 +17,6 @@ def usage():
     print("  Get it working and tested.")
     print("  Tell SQuaRE it's ready for incorporation into api.lsst.codes.")
 
+
 if __name__ == "__main__":
     usage()
