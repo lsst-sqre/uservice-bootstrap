@@ -22,10 +22,11 @@ def server(run_standalone=False):
                    auth={"type": "{{ cookiecutter.auth_type}}"{% if cookiecutter.auth_type != "none" %},
                          "data": {"username": "",
                                    "password": ""{% if cookiecutter.auth_type == "bitly-proxy" %},
-                                   "endpoint": "https://FIXME-BACKEND-URL/oauth2/start"{% endif %} }{% endif %}})
-    # Linter can't understand decorators.
+                                   "endpoint": "https://FIXME-BACKEND-URL/oauth2/start"{% endif %} }{% endif %}}){% if cookiecutter.auth_type == "bitly-proxy" %}
+    app.config["SESSION"] = None{% endif %}
 
     @app.errorhandler(BackendError)
+    # Linter can't understand decorators.
     # pylint: disable=unused-variable
     def handle_invalid_usage(error):
         """Custom error handler."""
@@ -46,7 +47,8 @@ def server(run_standalone=False):
         """
         #{{ cookiecutter.description }}
         """
-        # FIXME: service logic goes here
+        # FIXME: service logic goes here{% if cookiecutter.auth_type == "bitly-proxy" %}
+        # - store HTTP session in app.config["SESSION"]{% endif %}
         # - raise errors as BackendError
         # - return your results with jsonify
         # - set status_code on the response as needed
