@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: u-{{ cookiecutter.svc_name }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: u-{{ cookiecutter.svc_name }}
+    spec:
+      containers:
+
+        - name: u-{{ cookiecutter.svc_name }}
+          imagePullPolicy: "Always"
+          image: "lsstsqre/uservice-{{ cookiecutter.svc_name }}"
+          ports:
+            -
+              containerPort: 5000
+              name: u-{{ cookiecutter.svc_name }}
+              
