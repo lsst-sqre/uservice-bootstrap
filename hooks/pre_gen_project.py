@@ -13,15 +13,26 @@ def validate():
 def validate_svc_name(svc_name):
     bad = False
     reason = ""
+    # There are many reasons that a service name would not be legal.
+    #  If we find one, we set bad and a reason, and stop testing.
+    # It cannot be empty.
     if svc_name == "":
         bad = True
         reason = "svc_name must not be empty"
+    # It must be a legal Python identifier, which means...
+    #  Only ASCII letters, digits, and the underscore...
     if not bad:
         allowed_chars = string.digits + string.ascii_letters + '_'
-        xtable = string.maketrans('', '')
-        if svc_name.translate(xtable, allowed_chars) != "":
-            bad = True
-            reason = "svc_name can only contain ASCII letters, digits, and '_'"
+        # Yes, hideously inefficient, but svc_name will be short anyway
+        # Gets around both compiling a regexp and the differences in
+        #  translate() between Python 2 and 3.
+        for chr in svc_name:
+            if chr not in allowed_chars:
+                bad = True
+                reason = "svc_name can only contain digits, ascii letters, "
+                reason += "and underscore"
+                break
+    # ... and also that it does not start with a digit.
     if not bad:
         first = svc_name[0]
         if first in string.digits:
