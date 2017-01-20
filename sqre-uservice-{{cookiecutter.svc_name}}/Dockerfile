@@ -14,8 +14,8 @@ RUN        mkdir /dist
 # Must run python setup.py sdist first.
 ARG        VERSION="{{ cookiecutter.version}}"
 LABEL      version="$VERSION"
-COPY       dist/sqre-uservice-ltdstatus-$VERSION.tar.gz /dist
-RUN        pip install /dist/sqre-uservice-ltdstatus-$VERSION.tar.gz
+COPY       dist/sqre-uservice-{{ cookiecutter.svc_name }}-$VERSION.tar.gz /dist
+RUN        pip install /dist/sqre-uservice-{{ cookiecutter.svc_name }}-$VERSION.tar.gz
 
 USER       flasker
 WORKDIR    /home/flasker
