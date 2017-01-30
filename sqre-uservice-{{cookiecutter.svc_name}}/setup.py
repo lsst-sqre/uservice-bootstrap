@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-"""Setuptools Script"""
+"""Setuptools script.
+"""
 import os
 import codecs
 from setuptools import setup, find_packages
@@ -14,7 +15,8 @@ LICENSE = 'MIT'
 
 
 def local_read(filename):
-    """Convenience function for includes"""
+    """Convenience function for includes.
+    """
     full_filename = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
         filename)
