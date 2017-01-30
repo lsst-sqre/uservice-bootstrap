@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-"""{{ cookiecutter.svc_name}} microservice framework"""
+"""{{ cookiecutter.svc_name}} microservice framework.
+"""
 # Python 2/3 compatibility
 try:
     from json.decoder import JSONDecodeError
@@ -11,7 +12,8 @@ from flask import jsonify
 
 
 def server(run_standalone=False):
-    """Create the app and then run it."""
+    """Create the app and then run it.
+    """
     # Add "{{ cookiecutter.route }}" for mapping behind api.lsst.codes
     app = APIFlask(name="uservice-{{ cookiecutter.svc_name }}",
                    version="{{ cookiecutter.version }}",
@@ -28,14 +30,16 @@ def server(run_standalone=False):
     # pylint can't understand decorators.
     # pylint: disable=unused-variable
     def handle_invalid_usage(error):
-        """Custom error handler."""
+        """Custom error handler.
+        """
         response = jsonify(error.to_dict())
         response.status_code = error.status_code
         return response
 
     @app.route("/")
     def healthcheck():
-        """Default route to keep Ingress controller happy."""
+        """Default route to keep Ingress controller happy.
+        """
         return "OK"
 
     @app.route("{{ cookiecutter.route }}")
@@ -43,8 +47,7 @@ def server(run_standalone=False):
     # @app.route("{{ cookiecutter.route }}/<parameter>")
     # or, if you have a parameter, def route_function(parameter=None):
     def route_function():
-        """
-        {{ cookiecutter.description }}
+        """{{ cookiecutter.description }}
         """
         # FIXME: service logic goes here{% if cookiecutter.auth_type == "bitly-proxy" %}
         # See https://sqr-015.lsst.io for details.
@@ -59,7 +62,8 @@ def server(run_standalone=False):
 
 
 def standalone():
-    """Entry point for running as its own executable."""
+    """Entry point for running as its own executable.
+    """
     server(run_standalone=True)
 
 
