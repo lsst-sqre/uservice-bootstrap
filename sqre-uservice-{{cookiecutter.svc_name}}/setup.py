@@ -15,7 +15,7 @@ LICENSE = 'MIT'
 
 
 def local_read(filename):
-    """Convenience function for includes.
+    """Read a file into a string.
     """
     full_filename = os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
