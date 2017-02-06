@@ -43,7 +43,9 @@ setup(
     keywords='lsst',
     packages=find_packages(exclude=['docs', 'tests*']),
     install_requires=[
-        'sqre-apikit==0.0.10',
+        'sqre-apikit==0.0.10',{% if cookiecutter.auth_type == "bitly-proxy" %}
+        'bitly-oauth2-proxy-session==0.1.4',{% endif %}
+        'uWSGI==2.0.14'
     ],
     tests_require=['pytest'],
     entry_points={

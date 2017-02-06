@@ -59,6 +59,8 @@ def server(run_standalone=False):
 
     if run_standalone:
         app.run(host='0.0.0.0', threaded=True)
+    # Otherwise, we're running under uwsgi, and it wants the app.
+    return app
 
 
 def standalone():
