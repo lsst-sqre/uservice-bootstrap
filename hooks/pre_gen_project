@@ -1,16 +1,27 @@
 #!/usr/bin/env python
+"""Validation hooks before project is generated.
+"""
+# Note: it is vital this file *not* have a name ending in .py.
+#  If it does, it will break under uwsgi, because sys.executable will be
+#  "uwsgi" rather than "python", and this is manifestly not a uwsgi
+#  configuration file.
+
+
 import string
 import sys
 
 
 def validate():
-    """Validate Cookiecutter input."""
+    """Validate Cookiecutter input.
+    """
     # auth_type is validated by list in cookiecutter.json
     validate_svc_name("{{ cookiecutter.svc_name }}")
     # Room for improvement.
 
 
 def validate_svc_name(svc_name):
+    """Validate svc_name field.
+    """
     bad = False
     reason = ""
     # There are many reasons that a service name would not be legal.
