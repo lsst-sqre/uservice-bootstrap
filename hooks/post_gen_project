@@ -1,5 +1,15 @@
 #!/usr/bin/env python
+"""Things to be done after project generation.
+"""
+# Note: it is vital this file *not* have a name ending in .py.
+#  If it does, it will break under uwsgi, because sys.executable will be
+#  "uwsgi" rather than "python", and this is manifestly not a uwsgi
+#  configuration file.
+
+
 def usage():
+    """Show what else the user needs to do.
+    """
     print("Next steps (feel free to copy and paste the four-space-indented " +
           "lines):\n")
     print("    cd sqre-uservice-{{ cookiecutter.svc_name}}")
