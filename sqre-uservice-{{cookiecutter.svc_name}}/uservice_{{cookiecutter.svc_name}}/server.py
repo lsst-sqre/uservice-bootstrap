@@ -10,6 +10,8 @@ from apikit import APIFlask
 from apikit import BackendError
 from flask import jsonify
 
+log = None
+
 
 def server(run_standalone=False):
     """Create the app and then run it.
@@ -25,6 +27,9 @@ def server(run_standalone=False):
                                    "password": ""{% if cookiecutter.auth_type == "bitly-proxy" %},
                                    "endpoint": "https://FIXME-BACKEND-URL/oauth2/start"{% endif %} }{% endif %}}){% if cookiecutter.auth_type == "bitly-proxy" %}
     app.config["SESSION"] = None{% endif %}
+    global log
+    # Gross, but efficacious
+    log = app.config["LOGGER"]
 
     @app.errorhandler(BackendError)
     # pylint can't understand decorators.
@@ -32,7 +37,9 @@ def server(run_standalone=False):
     def handle_invalid_usage(error):
         """Custom error handler.
         """
-        response = jsonify(error.to_dict())
+        errdict = error.to_dict()
+        log.error(errdict)
+        response = jsonify(errdict)
         response.status_code = error.status_code
         return response
 
